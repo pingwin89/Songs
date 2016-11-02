@@ -16,6 +16,17 @@ public class Song {
 		likes = 0;
 	}
 	
+	public Song(String author, String tittle, Date date, int likes){
+		this.author = author;
+		this.tittle = tittle;
+		this.date = date;
+		this.likes = likes;
+	}
+	
+	public String toString(){
+		return author+" - "+tittle+", "+date.toString()+", likes: "+likes;
+	}
+	
 	public String getAuthor(){
 		return author;
 	}
