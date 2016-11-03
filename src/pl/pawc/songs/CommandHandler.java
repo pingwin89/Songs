@@ -7,6 +7,7 @@ import java.util.InputMismatchException;
 import java.util.Iterator;
 
 import pl.pawc.songs.pojo.Song;
+import pl.pawc.songs.sort.OrderByDate;
 
 public class CommandHandler {
 
@@ -21,9 +22,30 @@ public class CommandHandler {
 		case "list" : list(Main.map); break;
 		case "like" : like(); break;
 		case "top" : top(); break;
+		case "worst" : worst(); break;
+		case "recent" : recent(); break;
+		case "oldest" : oldest(); break;
 			
 		}
 	}
+	
+	private static void recent(){
+		ArrayList<Song> list = Util.getArrayListFrom(Main.map);
+		Collections.sort(list, new OrderByDate());
+		list(list);
+	}
+	
+	private static void oldest(){
+		ArrayList<Song> list = Util.getArrayListFrom(Main.map);
+		Collections.sort(list, Collections.reverseOrder(new OrderByDate()));
+		list(list);
+	}
+	
+	private static void worst(){
+		ArrayList<Song> list = Util.getArrayListFrom(Main.map);
+		Collections.sort(list, Collections.reverseOrder());
+		list(list);
+	}	
 	
 	private static void top(){
 		ArrayList<Song> list = Util.getArrayListFrom(Main.map);
@@ -33,13 +55,18 @@ public class CommandHandler {
 	
 	private static void like(){
 		int number = 0;
+		log("Enter a number");
 		try{
 			number = Main.sc.nextInt();
 		}
 		catch(Exception e){
 			e.printStackTrace();
 		}
-		if(number != 0) Main.map.get(number).addLike();
+		if(number != 0){
+			Song song = Main.map.get(number);
+			if(song != null){ song.addLike(); }
+			else{ log("No such element"); }
+		}
 	}
 	
 	private static void list(HashMap<Integer, Song> map){
