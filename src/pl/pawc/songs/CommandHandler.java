@@ -25,8 +25,22 @@ public class CommandHandler {
 		case "worst" : worst(); break;
 		case "recent" : recent(); break;
 		case "oldest" : oldest(); break;
+		case "remove" : remove(); break;
 			
 		}
+	}
+	
+	private static void remove(){
+		int number = 0;
+		log("Enter a number");
+		try{
+			number = Main.sc.nextInt();
+		}
+		catch(Exception e){
+			e.printStackTrace();
+		}
+		Song song = Main.map.remove(number);
+		if(song != null) log("removed: "+song.toString());
 	}
 	
 	private static void recent(){
