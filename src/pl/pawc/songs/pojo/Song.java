@@ -2,7 +2,7 @@ package pl.pawc.songs.pojo;
 
 import java.util.Date;
 
-public class Song {
+public class Song implements Comparable<Song> {
 	
 	private String author;
 	private String tittle;
@@ -46,4 +46,12 @@ public class Song {
 	public void addLike(){
 		likes++;
 	}
+
+	@Override
+	public int compareTo(Song song) {
+		if(getLikes() > song.getLikes()) return -1;
+		if(getLikes() < song.getLikes()) return 1;
+		return 0;
+	}
+		
 }

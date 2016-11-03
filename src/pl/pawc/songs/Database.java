@@ -1,7 +1,6 @@
 package pl.pawc.songs;
 
 import pl.pawc.songs.pojo.Song;
-import pl.pawc.songs.util.Parse;
 
 import java.io.BufferedReader;
 import java.io.FileNotFoundException;
@@ -16,7 +15,7 @@ public class Database {
 		FileWriter fw = null;
 		try {
 			fw = new FileWriter("database");
-			String records = Parse.getStringFrom(map);
+			String records = Util.getStringFrom(map);
 			fw.write(records);
 			fw.flush();
 		} 
@@ -37,7 +36,7 @@ public class Database {
 			BufferedReader bfr = new BufferedReader(fr);
 			String line = null;
 			while((line = bfr.readLine())!= null){
-				map.put(key, Parse.getSongFrom(line));
+				map.put(key, Util.getSongFrom(line));
 				key++;
 			}
 		}

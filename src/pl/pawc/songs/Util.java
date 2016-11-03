@@ -1,5 +1,6 @@
-package pl.pawc.songs.util;
+package pl.pawc.songs;
 
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.Iterator;
@@ -8,7 +9,7 @@ import java.util.Iterator;
 
 import pl.pawc.songs.pojo.Song;
 
-public class Parse {
+public class Util {
 
 	public static Song getSongFrom(String line){
 		
@@ -70,4 +71,13 @@ public class Parse {
 		return max+1;
 	}
 	
+	public static ArrayList<Song> getArrayListFrom(HashMap<Integer, Song> map){
+		ArrayList<Song> result = new ArrayList<Song>();
+		for(int i : map.keySet()){
+			result.add(map.get(i));
+		}
+		return result;
+	}
+	
+
 }
